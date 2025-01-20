@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/emojis/1185680439466283058.gif" type="image/gif">
+    <link rel="icon" href="https://cdn.discordapp.com/emojis/1185680439466283058.gif" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bah.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="blocker.js"></script>
+    <style>
+    .all {
+      display: flex;
+      justify-content: space-around; 
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+   .discord-profile {
+      margin: 10px;
+    }
+   </style>
+
+</head>
+
+<body>
+
+ <div class="cursor"></div>
+
+ <script type="text/javascript">
+const cursor = document.querySelector(".cursor");
+var timeout;
+
+document.addEventListener("mousemove", (e) => {
+    let x = e.pageX;
+    let y = e.pageY;
+
+    cursor.style.top = y + "px";
+    cursor.style.left = x + "px";
+    cursor.style.display = "block";
+
+    function mouseStopped(){
+        cursor.style.display = "none";
+    }
+    clearTimeout(timeout);
+    timeout = setTimeout(mouseStopped, 1000);
+});
+
+document.addEventListener("mouseout",() => {
+    cursor.style.display = "none";
+})
+ </script>
+
+    <script>
+        function audioPlay() {
+                var audio = document.getElementById("audio");
+                audio.volume = 1.0;
+                audio.currentTime = 0;
+                audio.play();
+        }
+    </script>
+    
+    <audio loop preload="auto" id="audio">
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <input type="checkbox" autocomplete="off" id="overlay-toggle">
+<div class="overlay fullscreen">
+	<label for="overlay-toggle" onclick="audioPlay(); ">
+
+        <ul class="black-overlay">
+            <li style="--clr:#ffcbfb">
+                <h2><a data-text=" click" onclick="removeOverlay()"> click </a></h2>
+            </li>
+        </ul>
+	</label>
+</div>
+
+<video autoplay loop muted>
+    <source src="https://cdn.discordapp.com/attachments/1169628264696905928/1187851780814540820/SaveTube.io-Falling_Cherry_Blossom_Petals_HD_Animation_-1080p.mp4?ex=6598642d&is=6585ef2d&hm=415fe9facc9b0241914277cd2d74741da6a2919c6c55809b866d62998656c4b8&">
+</video>
+
+    <div class="all">
+        <% Object.values(usersData).forEach(userData => { %>
+            <div class="discord-profile">
+                <div class="profile animate__animated animate__fadeInUp animate__fast">
+                    <div class="pfp">
+                        <img src="<%= userData.user.avatarURL({ size: 2048 }) %>" alt="<%= userData.user.username %>"/>
+                    </div>
+                    <div class="barra"></div>
+                    <div class="nickr"><%= userData.user.globalName %></div>
+                    <div class="nick subnick">@<%= userData.user.username %></div>
+                    <div class="badges">
+                        <% userData.userBadges.forEach(badge => { %>
+                            <div class="badge" style="background-image: url('<%= badgeImageUrls[badge.id] %>');" data-tooltip="<%= badge.description %>"></div>
+                        <% }); %>
+                    </div>
+
+                    <div class="social-buttons">
+
+                       <% if (userData.userR.data && userData.userR.data.connected_accounts) { %>
+                       <% userData.userR.data.connected_accounts.forEach(c => { %>
+                        <% if (c.type === "instagram") { %>
+                        <a href="https://www.instagram.com/<%= c.name %>/" target="_blank" class="social-button"> 
+                            <img src="https://raw.githubusercontent.com/rhxsp/rhxDiscordAssets/main/connections/instagram.svg" width="25" height="25"></i>
+
+                        </a>
+                        <% } else if (c.type === "github") { %>
+                        <a href="https://github.com/<%= c.name %>/" target="_blank" class="social-button"> 
+                            <img src="https://raw.githubusercontent.com/rhxsp/rhxDiscordAssets/main/connections/github.svg" width="25" height="25"></i>
+                        </a>
+                        <% } else if (c.type === "twitter") { %>
+                        <a href="https://twitter.com/<%= c.name %>/" target="_blank" class="social-button"> 
+                            <img src="https://raw.githubusercontent.com/rhxsp/rhxDiscordAssets/main/connections/twitter.svg" width="25" height="25"></i>
+                        </a>
+                        </a>
+                        <% } else if (c.type === "steam") { %>
+                        <a href="https://steamcommunity.com/id/newfashion/" target="_blank" class="social-button"> 
+                            <img src="https://raw.githubusercontent.com/rhxsp/rhxDiscordAssets/main/connections/steam.svg" width="25" height="25"></i>
+                        </a>
+                    </a>
+                    <% } %>
+                    <% }); %>
+                    <% } %>  
+                    <a href="https://discord.com/users/<%= userData.user.id %>" target="_blank" class="social-button">
+                        <i class="fab fa-discord social-icon"></i>
+                    </a>
+                    
+                </div>
+
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <script>
+        var rev = "fwd";
+
+        function titlebar(val) {
+            var msg = "bffs";
+            var res = " ";
+            var speed = 100;
+            var pos = val;
+            msg = "" + msg + "";
+            var le = msg.length;
+            if (rev == "fwd") {
+                if (pos < le) {
+                    pos = pos + 1;
+                    scroll = msg.substr(0, pos);
+                    document.title = scroll;
+                    timer = window.setTimeout("titlebar(" + pos + ")", speed);
+                } else {
+                    rev = "bwd";
+                    timer = window.setTimeout("titlebar(" + pos + ")", speed);
+                }
+            } else {
+                if (pos > 0) {
+                    pos = pos - 1;
+                    var ale = le - pos;
+                    scrol = msg.substr(ale, le);
+                    document.title = scrol;
+
+                    timer = window.setTimeout("titlebar(" + pos + ")", speed);
+                } else {
+                    rev = "fwd";
+                    timer = window.setTimeout("titlebar(" + pos + ")", speed);
+                }
+            }
+        }
+        titlebar(0);
+    </script>
+
+</body>
+</html>

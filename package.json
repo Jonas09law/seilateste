@@ -1,0 +1,26 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "sh main.sh"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "body-parser": "^1.20.2",
+    "child_process": "^1.0.2",
+    "ddos": "^0.2.1",
+    "discord": "^0.8.2",
+    "discord.js": "^14.14.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-rate-limit": "^5.5.1",
+    "express-session": "^1.17.3",
+    "helmet": "^4.6.0",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "wio.db": "^4.0.22"
+  }
+}
